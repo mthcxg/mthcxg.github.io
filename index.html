@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <script id="allow-copy_script">
-    (function agent() {
+<html><script id="allow-copy_script">(function agent() {
     let unlock = false
     document.addEventListener('allow_copy', (event) => {
       unlock = event.detail.unlock
@@ -30,13 +27,10 @@
         capture: true,
       })
     })
-  })()
-  </script>
-        
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script language="JavaScript">
-      
+  })()</script><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Điểm xét TN</title>
+		<script language="JavaScript">
 			function tinhdiem(form){							
 				var diemTong;
 				var dtoan,dvan,dnn,dtohop,dlop12,dkk,duutien;
@@ -44,7 +38,7 @@
 				dvan= parseFloat(form.diemvan.value.replace(',','.'));
 				dnn= parseFloat(form.diemnn.value.replace(',','.'));
 
-				dtohop= (parseFloat(form.diemly.value.replace(',','.')) + parseFloat(form.diemhoa.value.replace(',','.')) + parseFloat(form.diemsinh.value.replace(',','.')))/3;
+				dtohop= (parseFloat(form.diemmontohop1.value.replace(',','.')) + parseFloat(form.diemmontohop2.value.replace(',','.')) + parseFloat(form.diemmontohop3.value.replace(',','.')))/3;
 
 				dlop12= parseFloat(form.diemlop12.value.replace(',','.'));
 				dkk= parseFloat(form.diemkk.value.replace(',','.'));
@@ -72,10 +66,9 @@
 					document.getElementById('diemxetTN').innerHTML = diemTong.toFixed(2);
 				}
 			}
-    </script>
-    <meta name="robots" contemt="noindex">
-    <style>
-      
+		</script>
+		<meta name="robots" content="noindex">
+<style>
 input[type=text], select {
   width: 100px;
   padding: 12px 20px;
@@ -106,73 +99,48 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
+</style></head>
 
-    </style>
-   
-  </head>
-  <body>
-    <h2>
-      <span id="1_Cong_cu_tinh_diem">1. Caculate Graduation Consideration Score</span>
-    </h2>
-    <p>
-      
-    </p>
-    <p style="text-align: left;">
-      <div>
-        <form method="post">
-          <center> 
-            <br>
-            "Input math's score: "
-            <input type="text" name="diemtoan" value>
-            <br>
-            <br>
-            "Input english's score: "
-            <input type="text" name="diemanh" value>
-            <br>
-            <br>
-            "Input literature's score: "
-            <input type="text" name="diemvan" value>
-            <br>
-            
-            <br>
-            "Input physic (history)'s score: "
-            <input type="text" name="diemly" value>
-            <br>
-            <br>
-            "Input chemistry (geography)'s score: "
-            <input type="text" name="diemhoa" value>
-            <br>
-            <br>
-            "Input biology (civic education)'s score: "
-            <input type="text" name="diemsinh" value>
-            <br>
-             <br>
-            "Input CPA: "
-            <input type="text" name="diemlop12" value>
-            <br>
-             <br>
-            "Incentive point (optional): "
-            <input type="text" name="diemkk" value>
-            <br>
-             <br>
-            "Other score: "
-            <input type="text" name="diemuutien" value>
-            <br>
-            <br>
-            "Type: "
-            <input type="radio" name="choice" value="thpt">
-            "THPT"
-             <input type="radio" name="choice" value="gdtx">
-            "GDTX"
-            <br>
-            <input type="button" value="Calculate" onclick="tinhdiem(this.form)">
-            <br>
-            "Your Graduation Consideration Score: "
-            <label type="text" id="diemxetTN" name="diemTN">0.0</lable>
-            
-          </center>
-        </form>
-    </div>
-    </p>
-  </body>
-</html>
+
+
+<body>
+<div>
+	<form method="post">
+		<center>
+			<br>Nhập điểm môn Toán:
+			<input type="text" name="diemtoan" value="">
+			<br> Nhập điểm môn Ngữ văn:
+			<input type="text" name="diemvan" value="">
+			<br>Nhập điểm môn Ngoại ngữ:
+			<input type="text" name="diemnn" value="">
+
+			<!-- <br>Nhập điểm bài thi tổ hợp:
+			<input type="text" name="diemtohop" value=""> -->
+
+			<br>Nhập điểm môn Vật lí (hoặc Lịch sử):
+			<input type="text" name="diemmontohop1" value="">
+			<br>Nhập điểm môn Hóa học (hoặc Địa lí):
+			<input type="text" name="diemmontohop2" value="">
+			<br>Nhập điểm môn Sinh học (hoặc GDCD):
+			<input type="text" name="diemmontohop3" value="">
+
+
+
+
+			<br>Nhập điểm trung bình cả năm lớp 12:
+			<input type="text" name="diemlop12" value="">
+			<br>Nhập điểm khuyến khích (nếu có):
+			<input type="text" name="diemkk" value="0">			
+			<br>Nhập điểm ưu tiên (nếu có):
+			<input type="text" name="diemuutien" value="0">
+			<br>Đối tượng học sinh:
+				<input type="radio" name="choice" value="thpt"> Hệ THPT
+				<input type="radio" name="choice" value="gdtx"> Hệ GDTX
+			<br><input type="button" value="Tính điểm xét tốt nghiệp" onclick="tinhdiem(this.form)">
+			<br>Điểm xét tốt nghiệp:
+			<label type="text" id="diemxetTN" name="diemTN">0.0</label>
+		</center>
+	</form>
+</div>	
+
+<div class="selection_bubble_root" style="display: none;"></div></body></html>

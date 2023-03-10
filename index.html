@@ -1,18 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script id="allow-copy_script">
+    (function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()
+  </script>
+        
   <head>
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script language="JavaScript">
+      
+			function tinhdiem(form){							
+				var diemTong;
+				var dtoan,dvan,dnn,dtohop,dlop12,dkk,duutien;
+				dtoan= parseFloat(form.diemtoan.value.replace(',','.'));
+				dvan= parseFloat(form.diemvan.value.replace(',','.'));
+				dnn= parseFloat(form.diemnn.value.replace(',','.'));
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+				dtohop= (parseFloat(form.diemly.value.replace(',','.')) + parseFloat(form.diemhoa.value.replace(',','.')) + parseFloat(form.diemsinh.value.replace(',','.')))/3;
 
-    <!--
-      This is the page head - it contains info the browser uses
-      Like the title, which appears on the browser tab but not inside the page
-      Further down you'll see the content that displays in the page
-    -->
-    <title>Hello World!</title>
+				dlop12= parseFloat(form.diemlop12.value.replace(',','.'));
+				dkk= parseFloat(form.diemkk.value.replace(',','.'));
+				duutien= parseFloat(form.diemuutien.value.replace(',','.'));
+
+				const rbs = document.querySelectorAll('input[name="choice"]');
+				let selectedValue;
+				for (const rb of rbs) {
+					if (rb.checked) {
+						selectedValue = rb.value;
+						break;
+					}
+					else {
+						(selectedValue = 'Chưa tích chọn đối tượng học sinh');						
+					}
+				}
+
+				if (selectedValue == 'Chưa tích chọn đối tượng học sinh') {
+					alert(selectedValue);				
+				} else if (selectedValue == 'thpt') {									
+					diemTong=(((dtoan+dvan+dnn+dtohop+dkk)/4)*7 + dlop12*3)/10 + duutien;
+					document.getElementById('diemxetTN').innerHTML = diemTong.toFixed(2);
+				} else if (selectedValue == 'gdtx') {
+					diemTong=(((dtoan+dvan+dtohop)/3 + dkk/4)*7 + dlop12*3)/10 + duutien;
+					document.getElementById('diemxetTN').innerHTML = diemTong.toFixed(2);
+				}
+			}
+    </script>
+    <meta name="robots" contemt="noindex">
+    <style>
+      
+input[type=text], select {
+  width: 100px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=button] {
+  width: 300px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+    </style>
+   
   </head>
   <body>
     <h2>
@@ -50,6 +146,29 @@
             "Input biology (civic education)'s score: "
             <input type="text" name="diemsinh" value>
             <br>
+             <br>
+            "Input CPA: "
+            <input type="text" name="diemlop12" value>
+            <br>
+             <br>
+            "Incentive point (optional): "
+            <input type="text" name="diemkk" value>
+            <br>
+             <br>
+            "Other score: "
+            <input type="text" name="diemuutien" value>
+            <br>
+            <br>
+            "Type: "
+            <input type="radio" name="choice" value="thpt">
+            "THPT"
+             <input type="radio" name="choice" value="gdtx">
+            "GDTX"
+            <br>
+            <input type="button" value="Calculate" onclick="tinhdiem(this.form)">
+            <br>
+            "Your Graduation Consideration Score: "
+            <label type="text" id="diemxetTN" name="diemTN">0.0</lable>
             
           </center>
         </form>
